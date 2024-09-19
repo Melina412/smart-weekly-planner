@@ -2,6 +2,7 @@ import React from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
@@ -49,6 +50,13 @@ export default function TabLayout() {
         options={{
           title: 'Tab Two',
           tabBarIcon: ({ color }) => <TabBarIcon name='code' color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name='today'
+        options={{
+          title: 'Today',
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name='view-day' size={24} color={color} />,
         }}
       />
     </Tabs>
