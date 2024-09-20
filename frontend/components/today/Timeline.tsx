@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { Text, View } from '../Themed';
 import { tasks } from '@/assets/sampleData';
+import Timeblock from '@/components/today/Timeblock';
 
 export default function Timeline() {
   return (
@@ -19,31 +20,10 @@ export default function Timeline() {
           ))}
         </View>
 
-        {/* Zeitblöcke */}
-        {tasks.map((task) => {
-          // Berechne Position und Höhe des Blocks
-          const startHour = task.startTime.getHours();
-          const startMinutes = task.startTime.getMinutes();
-          const endHour = task.endTime.getHours();
-          const endMinutes = task.endTime.getMinutes();
-
-          const duration = endHour * 60 + endMinutes - (startHour * 60 + startMinutes);
-          const topPosition = startHour * 60 + startMinutes;
-
-          return (
-            <View
-              key={task.id}
-              style={[
-                styles.taskBlock,
-                {
-                  top: topPosition,
-                  height: duration,
-                },
-              ]}>
-              <Text>{task.title}</Text>
-            </View>
-          );
-        })}
+        {/* Timeblock */}
+        {tasks.map((task) => (
+          <Timeblock key={task.id} task={task} />
+        ))}
       </ScrollView>
     </View>
   );
@@ -64,15 +44,12 @@ const styles = StyleSheet.create({
   },
   hourBlock: {
     height: 60, // 60px = 1 Stunde
-    // borderBottomWidth: 1,
-    // borderColor: '#ddd',
-    // paddingLeft: 10,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    // gap: 5,
   },
   hourTextWrapper: {
-    flex: 0.1,
+    // flex: 0.1, // bei flex relationen verschiebt sich die lücke auf größeren screens -> entweder fixe größe lassen oder später für andere screens responsive machen
+    width: 40,
     paddingStart: 2,
   },
   hourText: {
@@ -84,15 +61,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'teal',
     borderBottomWidth: 1,
     borderColor: 'lightgrey',
-    // paddingLeft: 10,
-    flex: 0.9,
-  },
-  taskBlock: {
-    position: 'absolute',
-    left: 40, // Abstand von der Zeitachse
-    right: 0,
-    backgroundColor: 'lightblue',
-    borderRadius: 4,
-    padding: 5,
+    // flex: 0.9,
+    width: '100%',
   },
 });

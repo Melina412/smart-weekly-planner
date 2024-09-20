@@ -1,4 +1,4 @@
-type Block = {
+export type Block = {
   id: number;
   type: string | null;
   title: string;
@@ -8,9 +8,21 @@ type Block = {
   travelTime: number | null;
   category: string | null;
 };
-type Task = {
+
+export type Task = {
   id: number;
   type: 'task';
+  title: string;
+  date: Date;
+  startTime: Date;
+  endTime: Date;
+  travelTime: number;
+  category: string | null;
+};
+
+export type Appointment = {
+  id: number;
+  type: 'appointment';
   title: string;
   date: Date;
   startTime: Date;
@@ -41,7 +53,7 @@ export const todo: Block = {
   category: 'private',
 };
 
-export const tasks: Task[] = [
+export const tasks: (Task | Appointment)[] = [
   {
     id: 1,
     type: 'task',
@@ -64,8 +76,8 @@ export const tasks: Task[] = [
   },
   {
     id: 4,
-    type: 'task',
-    title: 'Sample task 4',
+    type: 'appointment',
+    title: 'Sample appointment',
     date: new Date(2024, 10, 21),
     startTime: new Date(2024, 10, 21, 19, 0, 0),
     endTime: new Date(2024, 10, 21, 19, 30, 0),
