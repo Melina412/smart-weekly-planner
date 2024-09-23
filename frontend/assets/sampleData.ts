@@ -9,6 +9,19 @@ export type Block = {
   category: string | null;
 };
 
+export type Todo = {
+  id: number;
+  type: string | null;
+  title: string;
+  date: Date | null;
+  startTime: Date | null;
+  endTime: Date | null;
+  travelTime: number | null;
+  category: string | null;
+  dueDate: Date | null;
+  plannedTime: number | null;
+};
+
 export type Task = {
   id: number;
   type: 'task';
@@ -42,7 +55,7 @@ export const task: Block = {
   category: 'private',
 };
 
-export const todo: Block = {
+export const todo: Todo = {
   id: 2,
   type: 'todo',
   title: 'Sample Todo',
@@ -51,7 +64,36 @@ export const todo: Block = {
   endTime: null,
   travelTime: null,
   category: 'private',
+  dueDate: new Date(2024, 10, 30, 12, 0, 0),
+  plannedTime: 120,
 };
+
+export const todos: Todo[] = [
+  {
+    id: 2,
+    type: 'todo',
+    title: 'Sample Todo 2',
+    date: null,
+    startTime: null,
+    endTime: null,
+    travelTime: null,
+    category: 'private',
+    dueDate: new Date(2024, 10, 30, 12, 0, 0),
+    plannedTime: 120,
+  },
+  {
+    id: 5,
+    type: 'todo',
+    title: 'Sample Todo 5',
+    date: null,
+    startTime: null,
+    endTime: null,
+    travelTime: null,
+    category: 'private',
+    dueDate: new Date(2024, 10, 30, 12, 0, 0),
+    plannedTime: 120,
+  },
+];
 
 export const tasks: (Task | Appointment)[] = [
   {
