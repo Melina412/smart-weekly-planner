@@ -1,48 +1,4 @@
-export type Block = {
-  id: number;
-  type: string | null;
-  title: string;
-  date: Date | null;
-  startTime: Date | null;
-  endTime: Date | null;
-  travelTime: number | null;
-  category: string | null;
-};
-
-export type Todo = {
-  id: number;
-  type: string | null;
-  title: string;
-  date: Date | null;
-  startTime: Date | null;
-  endTime: Date | null;
-  travelTime: number | null;
-  category: string | null;
-  dueDate: Date | null;
-  plannedTime: number | null;
-};
-
-export type Task = {
-  id: number;
-  type: 'task';
-  title: string;
-  date: Date;
-  startTime: Date;
-  endTime: Date;
-  travelTime: number;
-  category: string | null;
-};
-
-export type Appointment = {
-  id: number;
-  type: 'appointment';
-  title: string;
-  date: Date;
-  startTime: Date;
-  endTime: Date;
-  travelTime: number;
-  category: string | null;
-};
+import type { Item, Block, Todo, Task, Appointment } from '@/constants/types';
 
 export const task: Block = {
   id: 1,
@@ -95,7 +51,7 @@ export const todos: Todo[] = [
   },
 ];
 
-export const tasks: (Task | Appointment)[] = [
+export const items: Item[] = [
   {
     id: 1,
     type: 'task',

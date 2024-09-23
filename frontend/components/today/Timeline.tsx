@@ -1,10 +1,31 @@
 import React from 'react';
 import { StyleSheet, ScrollView } from 'react-native';
 import { Text, View } from '../Themed';
-import { tasks } from '@/assets/sampleData';
+// import { items } from '@/assets/sampleData';
 import Timeblock from '@/components/today/Timeblock';
+import { useState, useEffect } from 'react';
+import type { Item } from '@/constants/types';
 
 export default function Timeline() {
+  const [items, setItems] = useState<Item[]>([]);
+
+  //$ hier rufe ich aktuell nur die tasks ab. später sollen hier die aggregierten items abgerufen werden
+  async function getTasks() {
+    const response = await fetch(`${process.env.EXPO_PUBLIC_NODE_URL}/api/tasks`);
+    const res = await response.json();
+    const data = res.data;
+    console.log({ data });
+    if (response.ok) {
+      setItems(data);
+    }
+  }
+
+  useEffect(() => {
+    getTasks();
+  }, []);
+
+  console.log({ items });
+
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
@@ -21,8 +42,8 @@ export default function Timeline() {
         </View>
 
         {/* Timeblock */}
-        {tasks.map((task) => (
-          <Timeblock key={task.id} task={task} />
+        {items?.map((item) => (
+          <Timeblock key={item.id} item={item} />
         ))}
       </ScrollView>
     </View>
